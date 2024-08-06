@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Amenities</title>
+    <link rel="stylesheet" href="/static/styles/3-header.css">
+    <script src="/static/scripts/2-hbnb.js"></script>
+</head>
+<body>
+    <div id="content">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="/0-hbnb/">Home</a></li>
+                    <li><a href="/2-hbnb/">About</a></li>
+                </ul>
+            </nav>
+            <h1>About Us</h1>
+            <div id="api_status" class="available"></div> <!-- New API Status Div -->
+        </header>
+        <section id="description">
+            <p>This is a description about our place.</p>
+        </section>
+        <section id="amenities">
+            <h4>Amenities</h4>
+            <ul>
+                <li>
+                    <input type="checkbox" id="amenity_id_1" data-id="1" data-name="TV" style="margin-left: 10px;">
+                    <label>TV</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="amenity_id_2" data-id="2" data-name="Wifi" style="margin-left: 10px;">
+                    <label>Wifi</label>
+                </li>
+            </ul>
+        </section>
+    </div>
+</body>
+</html>
