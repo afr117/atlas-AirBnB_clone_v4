@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(() => {
     var selectedAmenities = {};
 
     $('input[type="checkbox"]').change(function() {
