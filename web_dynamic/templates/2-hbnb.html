@@ -2,39 +2,85 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Amenities</title>
-    <link rel="stylesheet" href="/static/styles/3-header.css">
-    <script src="/static/scripts/2-hbnb.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/styles/4-common.css?{{ cache_id }}">
+    <link rel="stylesheet" type="text/css" href="../static/styles/3-header.css?{{ cache_id }}">
+    <link rel="stylesheet" type="text/css" href="../static/styles/3-footer.css?{{ cache_id }}">
+    <link rel="stylesheet" type="text/css" href="../static/styles/6-filters.css?{{ cache_id }}">
+    <link rel="stylesheet" type="text/css" href="../static/styles/8-places.css?{{ cache_id }}">
+    <link rel="icon" href="../static/images/icon.png?{{ cache_id }}" />
+    <title>Dynamic Amenities</title>
+    <script src="/static/scripts/2-hbnb.js?{{ cache_id }}"></script>
 </head>
 <body>
-    <div id="content">
-        <header>
-            <nav>
-                <ul>
-                    <li><a href="/0-hbnb/">Home</a></li>
-                    <li><a href="/2-hbnb/">About</a></li>
-                </ul>
-            </nav>
-            <h1>About Us</h1>
-            <div id="api_status" class="available"></div> <!-- New API Status Div -->
-        </header>
-        <section id="description">
-            <p>This is a description about our place.</p>
+    <header>
+        <div id="api_status" class="available"></div> <!-- New API Status Div -->
+    </header>
+    <div class="container">
+        <section class="filters">
+            <div class="locations">
+                <h3>States</h3>
+                <h4>&nbsp;</h4>
+                <div class="popover">
+                    <ul>
+                        {% for state in states %}
+                        <li>
+                            <h2>{{ state[0].name }}:</h2>
+                            <ul>
+                                {% for city in state[1] %}
+                                <li>
+                                    <input type="checkbox" id="city_id_{{ loop.index }}" data-id="{{ loop.index }}" data-name="{{ city.name }}" style="margin-left: 10px;">
+                                    <label>{{ city.name }}</label>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="amenities">
+                <h3>Amenities</h3>
+                <h4>&nbsp;</h4>
+                <div class="popover">
+                    <ul>
+                        {% for amenity in amenities %}
+                        <li>
+                            <input type="checkbox" id="amenity_id_{{ loop.index }}" data-id="{{ loop.index }}" data-name="{{ amenity.name }}" style="margin-left: 10px;">
+                            <label>{{ amenity.name }}</label>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <button type="button">Search</button>
         </section>
-        <section id="amenities">
-            <h4>Amenities</h4>
-            <ul>
-                <li>
-                    <input type="checkbox" id="amenity_id_1" data-id="1" data-name="TV" style="margin-left: 10px;">
-                    <label>TV</label>
-                </li>
-                <li>
-                    <input type="checkbox" id="amenity_id_2" data-id="2" data-name="Wifi" style="margin-left: 10px;">
-                    <label>Wifi</label>
-                </li>
-            </ul>
+        <div class="placesh1"><h1>Places</h1></div>
+        <section class="places">
+            {% for place in places %}
+            <article>
+                <div class="title_box">
+                    <h2>{{ place.name }}</h2>
+                    <div class="price_by_night">${{ place.price_by_night }}</div>
+                </div>
+                <div class="information">
+                    <div class="max_guest">{{ place.max_guest }} Guest{% if place.max_guest != 1 %}s{% endif %}</div>
+                    <div class="number_rooms">{{ place.number_rooms }} Bedroom{% if place.number_rooms != 1 %}s{% endif %}</div>
+                    <div class="number_bathrooms">{{ place.number_bathrooms }} Bathroom{% if place.number_bathrooms != 1 %}s{% endif %}</div>
+                </div>
+                <div class="user">
+                    <b>Owner:</b> {{ place.user.first_name }} {{ place.user.last_name }}
+                </div>
+                <div class="description">
+                    {{ place.description | safe }}
+                </div>
+            </article>
+            {% endfor %}
         </section>
     </div>
+    </div>
+    <footer>
+        <p>Holberton School</p>
+    </footer>
 </body>
 </html>
