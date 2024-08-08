@@ -10,7 +10,6 @@
     <link rel="icon" href="../static/images/icon.png?{{ cache_id }}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/static/scripts/1-hbnb.js?{{ cache_id }}"></script>
-    <title>HBnB</title>
 </head>
 <body>
     <header>
@@ -29,7 +28,7 @@
                             <ul>
                                 {% for city in state[1] %}
                                 <li>
-                                    <input type="checkbox" id="city_id_{{ loop.index }}" data-id="{{ loop.index }}" data-name="{{ city.name }}" style="margin-left: 10px;">
+                                    <input type="checkbox" id="city_id_{{ loop.index }}" data-id="{{ city.id }}" data-name="{{ city.name }}" style="margin-left: 10px;">
                                     <label>{{ city.name }}</label>
                                 </li>
                                 {% endfor %}
@@ -46,7 +45,7 @@
                     <ul>
                         {% for amenity in amenities %}
                         <li>
-                            <input type="checkbox" id="amenity_id_{{ loop.index }}" data-id="{{ loop.index }}" data-name="{{ amenity.name }}" style="margin-left: 10px;">
+                            <input type="checkbox" id="amenity_id_{{ loop.index }}" data-id="{{ amenity.id }}" data-name="{{ amenity.name }}" style="margin-left: 10px;">
                             <label>{{ amenity.name }}</label>
                         </li>
                         {% endfor %}
@@ -83,3 +82,4 @@
     </footer>
 </body>
 </html>
+
